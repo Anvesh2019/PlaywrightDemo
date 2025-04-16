@@ -1,4 +1,4 @@
-class clsWeather
+export class clsWeather
 {
     public GetWeatherByZipcode()
     {
