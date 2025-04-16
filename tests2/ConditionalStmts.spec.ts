@@ -38,6 +38,28 @@ test('if elseif statement',async()=>{
             }
     });
 
+    test('switch case',async()=>{
+        const age:number =25;
+        switch(age) { 
+            case 25: { 
+               //statements;
+               console.log("Age is 25"); 
+               break; 
+            } 
+            
+            case 30: { 
+                //statements;
+                console.log("Age is 30"); 
+                break; 
+             } 
+            default: { 
+                console.log("unknown age");
+               //statements; 
+               break; 
+            } 
+         } 
+    });
+
     test('string array',async()=>{
         let fruits: string[] = ['Apple', 'Orange', 'Banana'];
         console.log(fruits[0]);
@@ -47,8 +69,11 @@ test('if elseif statement',async()=>{
     });
     
     test('integer array',async()=>{
-        let evenNums: number[] = [2,4,6,8,10];
+        let evenNums: number[] = [25,46,62,87,101,85,24];
+        evenNums.push(500);
         console.log(evenNums[0]);
         console.log("length is:" + evenNums.length);
+        evenNums.sort();
+        console.log("smallest:" + evenNums[0]);
         
     });
