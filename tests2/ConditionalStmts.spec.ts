@@ -37,3 +37,18 @@ test('if elseif statement',async()=>{
                 console.log('student is major');
             }
     });
+
+    test('string array',async()=>{
+        let fruits: string[] = ['Apple', 'Orange', 'Banana'];
+        console.log(fruits[0]);
+        console.log(fruits.length);
+        console.log(fruits[5]);
+        
+    });
+    
+    test('integer array',async()=>{
+        let evenNums: number[] = [2,4,6,8,10];
+        console.log(evenNums[0]);
+        console.log("length is:" + evenNums.length);
+        
+    });
