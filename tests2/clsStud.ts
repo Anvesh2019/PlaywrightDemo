@@ -1,5 +1,6 @@
 export class clsStud
 {
+  
     age:number=25;
     sname:string="Maharshi";
 
@@ -17,5 +18,9 @@ export class clsStud
     {
       return a+b;
     }
+    
+    
+    
 }
+
 
