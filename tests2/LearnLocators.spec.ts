@@ -40,3 +40,15 @@ test('Findelement By text',async({})=>{
     await giftcards.click();
     
 });
+
+
+test('Findelement By css selector',async({})=>{
+    const browser:Browser=await chromium.launch({headless:false, channel:'chrome'});
+    const page2:Page=await browser.newPage();
+    await page2.goto('https://www.google.com');
+    const txtSrch:Locator=await page2.locator("css=textarea[name='q']"); //tagname[attribute=value]
+    await txtSrch.fill("Techturorielaz");
+    
+});
+
+
