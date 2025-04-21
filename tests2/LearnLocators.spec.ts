@@ -50,12 +50,28 @@ test('Findelement By css selector',async({})=>{
     
 });
 
-test('Findelement By Role',async({})=>{
+test('Findelement By Testid',async({})=>{
     const browser:Browser=await chromium.launch({headless:false, channel:'chrome'});
     const page2:Page=await browser.newPage();
     await page2.goto('https://www.google.com');
-    page2.getByTestId
+    const prodLink:Locator= await page2.getByTestId('products');
+    await prodLink.click();
+
     //console.log(await page2.getByRole('div').filter(hasText:'Google offered in:  ').isEnabled());
     
+});
+
+test('Learn GetbyRole',async()=>{
+    const browser:Browser=await chromium.launch({headless:false, channel:'chrome'});
+    const rsPage:Page=await browser.newPage();
+    await rsPage.goto("https://rahulshettyacademy.com/AutomationPractice/");
+    //const chk1:Locator= await rsPage.locator('css=input[id="checkBoxOption1"]'); //working
+    //const chk1:Locator= await rsPage.locator('input[id="checkBoxOption1"]'); //working
+    //const chk1:Locator= await rsPage.locator('input#checkBoxOption1'); //working
+    await expect(rsPage.getByRole("button",{name:'Mouse Hover'})).toBeVisible(); //working
+    
+    await rsPage.getByRole("button",{name:'Mouse Hover'}).click(); //working
+
+    //await chk1.click();
 });
 
