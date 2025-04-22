@@ -68,10 +68,10 @@ test('Learn GetbyRole',async()=>{
     //const chk1:Locator= await rsPage.locator('css=input[id="checkBoxOption1"]'); //working
     //const chk1:Locator= await rsPage.locator('input[id="checkBoxOption1"]'); //working
     //const chk1:Locator= await rsPage.locator('input#checkBoxOption1'); //working
+    await rsPage.getByRole("textbox").first().fill('India');
     await expect(rsPage.getByRole("button",{name:'Mouse Hover'})).toBeVisible(); //working
-    
     await rsPage.getByRole("button",{name:'Mouse Hover'}).click(); //working
-
+   
     //await chk1.click();
 });
 
