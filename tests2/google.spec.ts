@@ -15,22 +15,22 @@ test('calling function',async()=>{
 
 
 
-/*
+
 test('navigate to google',async({page})=>{
 await page.goto('https://google.com');
-await expect(page).toHaveURL('https://www.google.com');
+await expect(page).toHaveURL('https://www.google.com'); //assertion
 await expect(page).toHaveTitle('Google');
-
 });
 
+/*
 test('navigate to techtutorialz',async({page})=>{
   await page.goto('https://techtutorialz.com');
   await expect(page).toHaveTitle(/Tutorials/);
 
   });
-
-  
 */
+  
+
 /*Getting screenshot, Logging*/
   test('search India',async({})=>{
     const browser:Browser=await chromium.launch({headless:false, channel:'chrome'});
@@ -38,14 +38,17 @@ test('navigate to techtutorialz',async({page})=>{
     await page2.goto('http://www.google.com');
     const txtsrch:Locator=await page2.locator('[name="q"]');
     txtsrch.fill('India');
-    const srcEnabed= await txtsrch.isEnabled();
+    const srcEnabed:boolean= await txtsrch.isEnabled();
     console.log("search text box enabled:" + srcEnabed);
     console.log(await page2.title());
     await page2.screenshot({path:'homepage.jpeg'});
     expect(await page2.title()).toContain('Google');
     expect(await page2.title()).toEqual('Google');
-    browser.close();
+   // browser.close();
   });
+  
+  
+
 
   test('Running Test in Firefox',async()=>{
     const browser:Browser= await firefox.launch({headless:false,channel:'firefox'});
