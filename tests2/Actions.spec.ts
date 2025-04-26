@@ -32,3 +32,17 @@ test('Learn Right click', async()=>{
       await page.waitForTimeout(10000); //just wait for 10 secs
          
 });
+
+test('Learn Window Scroll', async()=>{
+  const browser:Browser = await chromium.launch({headless:false, channel:'chrome'}); 
+    const page:Page= await browser.newPage();
+    await page.goto('https://www.amazon.in');
+    for(let i:number=0;i<5;i++) //scroll 2500 pixels vertically..each time 500 pixels
+    {
+      await page.evaluate(() => window.scrollBy(0, 500));
+    }
+    
+    await page.waitForTimeout(10000); //just wait for 10 secs
+       
+});
+
