@@ -46,3 +46,14 @@ test('Learn Window Scroll', async()=>{
        
 });
 
+test('Learn Drag and drop', async()=>{
+  const browser:Browser = await chromium.launch({headless:false, channel:'chrome'}); 
+    const page:Page= await browser.newPage();
+    await page.goto('http://demo.guru99.com/test/drag_drop.html');
+   const from:Locator=await page.locator("xpath=//*[@id='credit2']/a");
+   const To:Locator=await page.locator("xpath=//*[@id='bank']/li");
+    await page.waitForTimeout(2000); //just wait for 2 secs
+    await from.dragTo(To);
+    await page.waitForTimeout(5000); 
+});
+
