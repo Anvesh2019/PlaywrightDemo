@@ -57,3 +57,14 @@ test('Learn Drag and drop', async()=>{
     await page.waitForTimeout(5000); 
 });
 
+test('Focus on an Element', async()=>{
+    const browser:Browser = await chromium.launch({headless:false, channel:'chrome'}); 
+    const page:Page= await browser.newPage();
+    await page.goto('https://www.google.com');
+    const txtSrch:Locator=await page.locator("xpath=//textarea[@name='q']");
+    await page.waitForTimeout(2000); 
+    await txtSrch.focus();
+    await page.waitForTimeout(2000); 
+    await txtSrch.fill("India");
+       
+});
