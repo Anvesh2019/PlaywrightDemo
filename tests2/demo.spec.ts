@@ -15,7 +15,8 @@ test('Learn type of',async()=>{
         console.log("stud is major");
     }
     console.log(typeof age);
-    console.log(typeof city); //undefined coz of scope
-    
-
+   // console.log(typeof city); //undefined coz of scope
+    expect.soft(expect(age).toContain(35));
+    console.log("after soft assertion");
+  
 });
