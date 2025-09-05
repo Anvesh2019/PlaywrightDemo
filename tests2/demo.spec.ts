@@ -1,6 +1,22 @@
 import { test, expect,Page, Browser, Locator } from '@playwright/test';
 import { webkit, chromium, firefox } from 'playwright'; 
 
+test.beforeEach(async ({ page }) => {
+    
+    await page.goto('https://google.com/');
+    await page.waitForTimeout(2000);
+  });
+
+  
+  test('verify before each for google', async ({ page }) => {
+    await expect(page).toHaveTitle('Google');
+  });
+
+
+  test('verify before each', async ({ page }) => {
+    await expect(page).toHaveTitle('Home Version One - Tutorials & Trainings, Placements, Job support');
+  });
+
 test('operator',async()=>{
     let x:number=30;
     let y:number= 40;
@@ -20,3 +36,7 @@ test('Learn type of',async()=>{
     console.log("after soft assertion");
   
 });
+
+test.afterEach(async ({ page }) => {
+     await page.close();
+  });
