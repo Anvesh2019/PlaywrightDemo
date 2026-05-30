@@ -30,7 +30,7 @@ test('Learn Right click', async()=>{
       const btnSignin:Locator=await page.locator("xpath=//a[@aria-label='Sign in']");
       await btnSignin.first().click({ button: "right" }); //right click
       await page.waitForTimeout(10000); //just wait for 10 secs
-         
+      await browser.close(); 
 });
 
 test('Learn Window Scroll', async()=>{

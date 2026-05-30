@@ -20,6 +20,7 @@ test('navigate to google',async({page})=>{
 await page.goto('https://google.com');
 await expect(page).toHaveURL('https://www.google.com'); //assertion
 await expect(page).toHaveTitle('Google');
+
 });
 
 /*

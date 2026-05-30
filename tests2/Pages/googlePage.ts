@@ -17,7 +17,7 @@ constructor(page: Page) {
 async NavigateToSite()
 {
     await this.page.goto(this.url);
-    }
+}
 
     async clickonGmail()
         {
