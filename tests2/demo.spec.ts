@@ -1,10 +1,16 @@
 import { test, expect,Page, Browser, Locator } from '@playwright/test';
 import { webkit, chromium, firefox } from 'playwright'; 
+import { GetStudentDetails } from './myfunctions';
+// import { GetStudentDetails } from '../myFunctions';
+import { getStudNames } from './myfunctions';  //import specific functions(getStudNames) from myfunctions file
+import * as functions from './myfunctions'; //import entire functions file as namespace
 
+let getSnames:string[]=[];
 test.beforeEach(async ({ page }) => {
-    
+    getSnames=await functions.getStudNames();
     await page.goto('https://google.com/');
     await page.waitForTimeout(2000);
+    //console.log(getSnames[0]);
   });
 
   
@@ -36,7 +42,21 @@ test('Learn type of',async()=>{
     console.log("after soft assertion");
   
 });
-
+test('Get student details', async () => {
+    const studentId: number = 123;
+    const details: string = await GetStudentDetails(studentId);
+    console.log(details);
+    expect(details).toBe("Anand");
+});
+test('Get student names', async () => {
+    const names: string[] = await getStudNames();
+    //console.log(names);
+    expect(names).toContain("Ravi");
+    for(let i=0;i<getSnames.length;i++)    {
+        console.log(getSnames[i]);
+    }
+   
+});
 test.afterEach(async ({ page }) => {
      await page.close();
   });
