@@ -7,3 +7,12 @@ export async function getStudNames(): Promise<string[]>
 {
     return ["Anand", "Ravi", "Suresh"];
 }
+
+export async function getStudMarks(): Promise<{ [key: string]: number }> {
+    return {
+        "Anand": 85,
+        "Ravi": 90,
+        "Suresh": 78
+    };
+}       
+    

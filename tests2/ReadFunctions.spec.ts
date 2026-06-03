@@ -57,6 +57,12 @@ test('Get student names', async () => {
     }
    
 });
+
+test('Get student marks', async () => {
+    const marks: { [key: string]: number } = await functions.getStudMarks();
+    console.log(marks);
+    expect(marks["Anand"]).toBe(85);
+});
 test.afterEach(async ({ page }) => {
      await page.close();
   });

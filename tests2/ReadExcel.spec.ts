@@ -2,9 +2,13 @@ import {expect, Page, Browser, test} from '@playwright/test';
 import { readFile, utils, read as _read } from 'xlsx';
 
 const xlsx = require('xlsx');
-const path="C:\Users\Anand.Gummadilli\Documents\Anand_Details\PlaywrightDemo\PlaywrightDemo-1\tests2\Anvesh.xlsx";
+//const path="C:\\Users\\Anand.Gummadilli\\Documents\\Anand_Details\\PlaywrightDemo\\PlaywrightDemo-1\\tests2\\Anvesh.xlsx";
+
+const path="C:\Users\anand\OneDrive\Documents\PlaywrightDemo\PlaywrightDemo\tests2\Anvesh.xlsx";
+
 const workbook = xlsx.read(path);
-const worksheet = workbook.Sheets['Sheet1'];
+//const worksheet = workbook.Sheets['Sheet1'];
+const worksheet = workbook.Sheets[workbook.SheetNames[0]];
 const data = xlsx.utils.sheet_to_json(worksheet);
 
 test('Read Excel', async()=>{
@@ -14,11 +18,23 @@ test('Read Excel', async()=>{
    console.log(xlsx.utils.encode_range({ r:1,c:1}));
 });
 
+
+/*
 test('Read environment variables', async() => {
     console.log(process.env.OS); 
     console.log(process.env.Path); 
     console.log(process.env.windir);
   });
+  */
+test('Read Excel with utils', async()=>{
+    console.log(workbook.SheetNames);
+    //const data = xlsx.utils.sheet_to_json(worksheet);
+    //console.log(data);
+    console.log(Object.keys(data[0]));
+    console.log(data[0].Name);
+    console.log(data[0].Age);
+});
+
 /*
   function getDataRange(data) {
     const dataWithValues = _.pickBy(data, (value, key) => !!value.v)
@@ -29,4 +45,4 @@ test('Read environment variables', async() => {
     const lastCellName = xlsx.utils.encode_cell({ c: maxColumn, r: maxRow })
     return `A1:${lastCellName}`
   }
-    */
+  */
