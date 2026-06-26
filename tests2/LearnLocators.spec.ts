@@ -75,3 +75,17 @@ test('Learn GetbyRole',async()=>{
     //await chk1.click();
 });
 
+test('Get by Role or title google search',async({page})=>{
+   
+    await page.goto("https://www.google.com", {
+    waitUntil: "domcontentloaded"
+});
+    //await page.waitForTimeout(2000);
+    await page.waitForLoadState("networkidle"); //wait until pageload
+    const textboxes = await page.getByRole("combobox").all();
+    console.log("Textbox count:", textboxes.length); 
+    await page.getByRole("combobox", { name: "Search" }).fill('India'); //working fine
+    await page.getByRole("combobox", { name: "Search" }).press("Enter"); //working fine
+    await page.getByTitle("Search").fill("India");  //working fine
+    await page.getByTitle("Search").press("India"); //working fine
+});
