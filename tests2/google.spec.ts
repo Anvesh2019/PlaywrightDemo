@@ -2,6 +2,11 @@ import { test, expect,Page, Browser, Locator } from '@playwright/test';
 import { webkit, chromium, firefox } from 'playwright'; 
 import { clsStud } from './clsStud';
 import {common} from './common';
+import { defineConfig } from '@playwright/test';
+
+export default defineConfig({
+  reporter: 'html',
+});
 
 test('calling function',async()=>{
   const objStud=new clsStud(25,'Anand');
@@ -12,8 +17,6 @@ test('calling function',async()=>{
   console.log(objCommon.AddNumbers(50,150));
 
 });
-
-
 
 
 test('navigate to google',async({page})=>{
@@ -83,5 +86,47 @@ test('navigate to techtutorialz',async({page})=>{
     await txtsrch2.fill("chaina");
 
   });
+//handle popups
+test('Handle popup window', async ({ page }) => {
+    
+await page.goto('http://demo.guru99.com/test/delete_customer.php');
+const custID:Locator = await page.locator('[name="cusid"]');
+const custId:string = "523190";
+await custID.fill(custId);
+await page.waitForTimeout(2000);
+await page.locator("//input[@name='submit']").click();
+console.log("Submit button clicked");
 
+page.on('dialog', async dialog => {
+    console.log('Alert message:', dialog.message());
+    await dialog.accept();
+});
+
+
+await page.screenshot({ path: 'after-submit.png', fullPage: true });
+await page.waitForTimeout(3000);
+//const popupPromise = page.waitForEvent('popup');
+//const popup = await popupPromise;
+//await popup.waitForLoadState();
+//console.log(await popup.title());
+//await expect(popup).toHaveTitle('New Window');
+
+});
   
+test('Demo test case', async ({ page }) => {
+  await page.goto('https://google.com');
+  const searchBox: Locator = await page.locator('[name="q"]');
+  //await page.click('[name="q"]');
+  //await page.fill('[name="q"]', 'Playwright');
+  //await page.waitForTimeout(5000);
+  //await page.fill('//*[@name="q"]', 'Playwright'); //we can directly use xpath also instead of locator
+
+  // await searchBox.fill('Playwright');
+  // await searchBox.press('Enter');
+   await page.waitForTimeout(3000);
+  // const firstResult: Locator = await page.locator('h3').first();
+  // console.log(await firstResult.textContent());
+  // expect(await firstResult.textContent()).toContain('Playwright');
+  
+  await page.close();
+});
