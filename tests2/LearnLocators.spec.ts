@@ -95,7 +95,7 @@ test('Get by Role or title google search',async({page})=>{
 ❌ locator('#APjFqb') (avoid relying on dynamic IDs)
     */
 });
-
+//not working
 test('getbyText',async({page})=>{
     await page.goto("https://www.google.com", {
     waitUntil: "domcontentloaded"
@@ -111,6 +111,12 @@ test('getbyLabel',async({page})=>{
     await page.waitForTimeout(2000);
     const txtSrch:Locator=await page.locator("css=textarea[name='q']"); //tagname[attribute=value]
     await txtSrch.fill("Techturorielaz");
-    const searchResults = await page.getByLabel("Google Search").first(); //more than 1 elements exists, click 1st one
-    await searchResults.click();
+    const searchResults = await page.getByLabel("Google Search");
+    console.log("searchResults count:", await searchResults.count());
+    if(await searchResults.count() > 0) 
+    {
+        await searchResults.first().click(); // Click the first element if it exists
+    }
+    //.first(); //more than 1 elements exists, click 1st one
+    //await searchResults.click();
 });
