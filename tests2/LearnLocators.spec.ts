@@ -86,6 +86,14 @@ test('Get by Role or title google search',async({page})=>{
     console.log("Textbox count:", textboxes.length); 
     await page.getByRole("combobox", { name: "Search" }).fill('India'); //working fine
     await page.getByRole("combobox", { name: "Search" }).press("Enter"); //working fine
-    await page.getByTitle("Search").fill("India");  //working fine
-    await page.getByTitle("Search").press("India"); //working fine
+    // await page.getByTitle("Search").fill("India");  //working fine
+    // await page.getByTitle("Search").press("India"); //working fine
+
+    /*
+    ✅ getByRole('combobox', { name: 'Search' })
+✅ getByLabel('Search')
+✅ getByTitle('Search')
+✅ locator('textarea[name="q"]')
+❌ locator('#APjFqb') (avoid relying on dynamic IDs)
+    */
 });
