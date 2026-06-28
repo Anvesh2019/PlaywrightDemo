@@ -39,8 +39,6 @@ test('Findelement By text',async({})=>{
     await giftcards.click();
     
 });
-
-
 test('Findelement By css selector',async({})=>{
     const browser:Browser=await chromium.launch({headless:false, channel:'chrome'});
     const page2:Page=await browser.newPage();
