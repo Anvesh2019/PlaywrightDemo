@@ -87,3 +87,26 @@ test('Get by Role or title google search',async({page})=>{
     await page.getByTitle("Search").fill("India");  //working fine
     await page.getByTitle("Search").press("India"); //working fine
 });
+
+//it will look for data-testid attribute
+test("get by TestID", async ({ page }) => {
+    await page.goto("https://www.google.com", {
+    waitUntil: "domcontentloaded"   });
+    await page.waitForLoadState("networkidle");
+    const textboxes = await page.getByTestId("APjFqb").all();
+    console.log("Textbox count:", textboxes.length); // should give 0 coz no data-testid
+    await page.getByTestId("APjFqb").fill("India"); //wont work coz no data-testid attribute
+    await page.getByTestId("APjFqb").press("Enter");
+  });
+//it will look for data-testid attribute
+test("get by TestID in amazon site", async ({ page }) => {
+    await page.goto("https://www.amazon.in", {
+    waitUntil: "domcontentloaded"   });
+    await page.waitForLoadState("networkidle");
+    const volControl = await page.getByTestId("DesktopFlexWatchNowOverlayTemplate").all();
+    console.log("Textbox count:", volControl.length); 
+    await page.getByTestId("VolumePlayPanel").click(); 
+    await page.waitForTimeout(30000);
+    
+  });
+  
