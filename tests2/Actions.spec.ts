@@ -1,5 +1,5 @@
 import {test,expect,Locator, Page, Browser} from '@playwright/test'
-import { BADHINTS } from 'dns';
+//import { BADHINTS } from 'dns';
 import { chromium,webkit,firefox } from 'playwright'
 
 test('Learn Mouse hover', async()=>{
