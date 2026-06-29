@@ -27,3 +27,44 @@ test("API Verify Response", async ({ request }) => {
 
   expect(responseBody.some((item: any) => item.id === "9223372036854001000")).toBeTruthy();
 });
+
+test('POST API Request', async ({ request }) => {
+
+  const response = await request.post(
+    'https://petstore.swagger.io/v2/pet',
+    {
+      headers: {
+        'Content-Type': 'application/json'
+      },
+
+      data: {
+        id: 2027,
+        category: {
+          id: 0,
+          name: 'Wild'
+        },
+        name: 'Anvesh666',
+        photoUrls: [
+          'string'
+        ],
+        tags: [
+          {
+            id: 0,
+            name: 'string'
+          }
+        ],
+        status: 'pending'
+      }
+    }
+  );
+
+  expect(response.status()).toBe(200);
+
+  const responseBody = await response.json();
+
+  console.log(responseBody);
+
+  expect(responseBody.id).toBe(2027);
+  expect(responseBody.name).toBe('Anvesh666');
+  expect(responseBody.status).toBe('pending');
+});
