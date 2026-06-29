@@ -11,4 +11,6 @@ export class common
     {
     console.log("My name is:" + name);
     }
+
+   
 }
