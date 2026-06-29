@@ -68,3 +68,12 @@ test('Focus on an Element', async()=>{
     await txtSrch.fill("India");
        
 });
+
+test('Learn pressSequentially', async()=>{
+    const browser:Browser = await chromium.launch({headless:false, channel:'chrome'}); 
+    const page:Page= await browser.newPage(); 
+    await page.goto('https://www.google.com');
+    const txtSrch:Locator=await page.locator("xpath=//textarea[@name='q']");
+    await page.waitForTimeout(2000); 
+    await txtSrch.pressSequentially("India", {delay:100});
+});
