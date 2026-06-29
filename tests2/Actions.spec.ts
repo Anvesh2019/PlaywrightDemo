@@ -76,4 +76,7 @@ test('Learn pressSequentially', async()=>{
     const txtSrch:Locator=await page.locator("xpath=//textarea[@name='q']");
     await page.waitForTimeout(2000); 
     await txtSrch.pressSequentially("India", {delay:100});
+    await page.screenshot({path:'googlesearch.jpeg'}); //get screenshot of the page
+    const linkgmail:Locator=await page.locator("xpath=//a[text()='Gmail']");
+    console.log("test is: " + await linkgmail.textContent());  //get text content of the element
 });
