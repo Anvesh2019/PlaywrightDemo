@@ -36,12 +36,13 @@ import {expect,test,Locator,Page,Browser,chromium} from '@playwright/test';
         await expect(giftcards).toHaveText('Gift Cards123');
      });
 
-      test('Learn toHaveattribute() assertion', async ({page}) => 
+      test('Learn toHaveattribute(),toContainClass() assertion', async ({page}) => 
         {
         await page.goto('https://www.google.in');  
         await page.waitForTimeout(3000);
         const txtSrch:Locator=await page.locator('//textarea[@name="q"]');
         await expect(txtSrch).toHaveAttribute('name', 'q');
         await expect(txtSrch).toHaveAttribute('maxlength', '2048');
+        await expect(txtSrch).toContainClass('gLFyf');
         
       });
