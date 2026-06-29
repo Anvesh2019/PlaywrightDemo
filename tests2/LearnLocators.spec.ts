@@ -84,9 +84,18 @@ test('Get by Role or title google search',async({page})=>{
     console.log("Textbox count:", textboxes.length); 
     await page.getByRole("combobox", { name: "Search" }).fill('India'); //working fine
     await page.getByRole("combobox", { name: "Search" }).press("Enter"); //working fine
-    await page.getByTitle("Search").fill("India");  //working fine
-    await page.getByTitle("Search").press("India"); //working fine
+    // await page.getByTitle("Search").fill("India");  //working fine
+    // await page.getByTitle("Search").press("India"); //working fine
+
+    /*
+    ✅ getByRole('combobox', { name: 'Search' })
+✅ getByLabel('Search')
+✅ getByTitle('Search')
+✅ locator('textarea[name="q"]')
+❌ locator('#APjFqb') (avoid relying on dynamic IDs)
+    */
 });
+
 
 //it will look for data-testid attribute
 test("get by TestID", async ({ page }) => {
@@ -110,3 +119,29 @@ test("get by TestID in amazon site", async ({ page }) => {
     
   });
   
+
+//not working
+test('getbyText',async({page})=>{
+    await page.goto("https://www.google.com", {
+    waitUntil: "domcontentloaded"
+});
+    await page.waitForLoadState("networkidle"); 
+    const searchResults = await page.getByText("Search");
+    await searchResults.click();
+});
+
+test('getbyLabel',async({page})=>{
+    await page.goto("https://www.google.com");
+    //await page.waitForLoadState("networkidle"); 
+    await page.waitForTimeout(2000);
+    const txtSrch:Locator=await page.locator("css=textarea[name='q']"); //tagname[attribute=value]
+    await txtSrch.fill("Techturorielaz");
+    const searchResults = await page.getByLabel("Google Search");
+    console.log("searchResults count:", await searchResults.count());
+    if(await searchResults.count() > 0) 
+    {
+        await searchResults.first().click(); // Click the first element if it exists
+    }
+    //.first(); //more than 1 elements exists, click 1st one
+    //await searchResults.click();
+});

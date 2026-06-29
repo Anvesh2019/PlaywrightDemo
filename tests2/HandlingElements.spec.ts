@@ -9,7 +9,7 @@ test('Handle text box',async()=>{
     const txtSrch: Locator=page.locator("[name='q']"); 
     txtSrch.fill("India");
 
-    const length:string= await txtSrch.getAttribute("maxlength");
+    const length:string | null = await txtSrch.getAttribute("maxlength");
     console.log("max length is:" + length);
     await expect(txtSrch).toHaveValue("India");
     const txtValue:string= await txtSrch.inputValue();
