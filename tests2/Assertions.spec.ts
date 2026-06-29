@@ -1,8 +1,6 @@
 import {expect,test,Locator,Page,Browser,chromium} from '@playwright/test';
 
     
-//https://demo.guru99.com/test/newtours/register.php
-//https://www.ironspider.ca/forms/checkradio.htm
     test('Learn toBeChecked() assertion', async ({page}) => 
         {
         await page.goto('https://www.ironspider.ca/forms/checkradio.htm');
