@@ -7,7 +7,8 @@ test('Login to OMC Test using Valid Credentials',async({page})=>{
    const omcPage= new OMCLoginPage(page);
    await omcPage.NavigateToOMCSite();
    await omcPage.EnterValidCredentials();
-  
+   await page.waitForTimeout(3000);
+   await expect(page).toHaveURL("http://veritasmirror.apps.mars:8080/changeset/204752");
 });
 test('Verify Invalid Credentials',async({page})=>{
    const omcPage= new OMCLoginPage(page);
