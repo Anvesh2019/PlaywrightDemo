@@ -9,3 +9,10 @@ test('Login to OMC Test using Valid Credentials',async({page})=>{
    await omcPage.EnterValidCredentials();
   
 });
+test('Verify Invalid Credentials',async({page})=>{
+   const omcPage= new OMCLoginPage(page);
+   await omcPage.NavigateToOMCSite();
+   await omcPage.EnterInValidCredentials();
+   await expect(omcPage.invalidCredError).toBeVisible();
+   await page.waitForTimeout(3000);
+});
