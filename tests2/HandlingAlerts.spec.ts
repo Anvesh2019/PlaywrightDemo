@@ -27,3 +27,17 @@ test('Accept Confirmation', async ({ page }) => {
 
   await page.locator('button:text("Click for JS Confirm")').click();
 });
+test('Handle Prompt', async ({ page }) => {
+
+  page.on('dialog', async dialog => {
+
+    console.log(dialog.message());
+    await page.waitForTimeout(3000);
+    await dialog.accept('Anand');
+    //await page.waitForTimeout(3000);
+  });
+
+  await page.goto('https://the-internet.herokuapp.com/javascript_alerts');
+
+  await page.locator('button:text("Click for JS Prompt")').click();
+});
