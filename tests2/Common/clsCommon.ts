@@ -8,9 +8,11 @@ export async function launchBrowser(): Promise<Page> {
     const page = await browser.newPage();
     return page;
 }
+//navigate to
 export async function navigateTo(page: Page, url: string) {
     await page.goto(url);
 }
+//click Element
 export async function clickElement(page: Page, locator: string) {
     await page.locator(locator).click();
 }
