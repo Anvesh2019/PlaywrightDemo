@@ -15,6 +15,34 @@ test("API Get call", async ({ request }) => {
   expect(responseBody.some((item: any) => item.name === "doggie")).toBeTruthy();
 });
 
+test('GET API with path parameter', async ({ request }) => {
+
+    const userId = 2;
+
+    const response = await request.get(`https://reqres.in/api/users/${userId}`);
+
+    expect(response.status()).toBe(200);
+
+    console.log(await response.json());
+});
+
+test('GET API with query parameters', async ({ request }) => {
+
+    const page = 2;
+    const perPage = 5;
+
+    const response = await request.get('https://reqres.in/api/users', {
+        params: {
+            page: page,
+            per_page: perPage
+        }
+    });
+
+    expect(response.status()).toBe(200);
+
+    const responseBody = await response.json();
+    console.log(responseBody);
+});
 
 test("API Verify Response", async ({ request }) => {
   const response = await request.get("https://petstore.swagger.io/v2/pet/9223372036854001000");

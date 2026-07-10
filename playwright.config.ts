@@ -14,8 +14,9 @@ declare const process: { env: { CI?: string } };
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  // globalSetup: require.resolve('./global-setup'),
-  // globalTeardown: require.resolve('./global-teardown'),
+ 
+  // globalSetup: './global-setup.ts',
+  //globalTeardown: './globalTeardown',
   testDir: './tests2',
   /* Run tests in files in parallel */
   fullyParallel: true,
@@ -36,6 +37,7 @@ export default defineConfig({
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
     testIdAttribute:'data-testid',
+     
   },
 
   /* Configure projects for major browsers */
