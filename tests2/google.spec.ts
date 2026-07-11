@@ -1,4 +1,4 @@
-import { test, expect,Page, Browser, Locator } from '@playwright/test';
+import { test, expect,Page, Browser, Locator, TestInfo } from '@playwright/test';
 import { webkit, chromium, firefox } from 'playwright'; 
 import { clsStud } from './clsStud';
 import {common} from './common';
@@ -6,9 +6,12 @@ import { defineConfig } from '@playwright/test';
 
 export default defineConfig({
   reporter: 'html',
+    workers: 4,
 });
 
-test('calling function',async()=>{
+test('calling function',async ({ page }, testInfo)=>{
+  console.log(`calling function: ${new Date().toLocaleTimeString()}`);
+  console.log(`Worker: ${testInfo.workerIndex}`);
   const objStud=new clsStud(25,'Anand');
   objStud.Displayname();
   const sum=  objStud.AddNumbers(10,20);
@@ -19,8 +22,10 @@ test('calling function',async()=>{
 });
 
 
-test('navigate to google',async({page})=>{
-await page.goto('https://google.com');
+test('navigate to google',async({page}, testInfo)=>{
+  console.log(`navigate to google: ${new Date().toLocaleTimeString()}`);
+  console.log(`Worker: ${testInfo.workerIndex}`);
+  await page.goto('https://google.com');
 await expect(page).toHaveURL('https://www.google.com'); //assertion
 await expect(page).toHaveTitle('Google');
 
@@ -36,7 +41,9 @@ test('navigate to techtutorialz',async({page})=>{
   
 
 /*Getting screenshot, Logging*/
-  test('search India',async({})=>{
+  test('search India',async({page}, testInfo)=>{
+    console.log(`search India: ${new Date().toLocaleTimeString()}`);
+    console.log(`Worker: ${testInfo.workerIndex}`);
     const browser:Browser=await chromium.launch({headless:false, channel:'chrome'});
     const page2:Page=await browser.newPage();
     await page2.goto('http://www.google.com');
@@ -51,25 +58,40 @@ test('navigate to techtutorialz',async({page})=>{
    // browser.close();
   });
   
-  
+  test('Running Test in Firefox', async ({ page }, testInfo) => {
 
+    console.log(`Time         : ${new Date().toLocaleTimeString()}`);
+    console.log(`Worker Index : ${testInfo.workerIndex}`);
+    console.log(`Project      : ${testInfo.project.name}`);
+    console.log(`PID          : ${(globalThis as any).process?.pid ?? 'unknown'}`);
 
-  test('Running Test in Firefox',async()=>{
-    const browser:Browser= await firefox.launch({headless:false,channel:'firefox'});
-    const page:Page= await browser.newPage();
     await page.goto('https://google.com');
-    expect(await page.title()).toContain('Google');
+
+    await expect(page).toHaveTitle(/Google/);
+});
+
+
+  // test('Running Test in Firefox',async({page}, testInfo)=>{
+  //   console.log(`Running Test in Firefox: ${new Date().toLocaleTimeString()}`);
+  //   const browser:Browser= await firefox.launch({headless:false,channel:'firefox'});
+  //   const page:Page= await browser.newPage();
+  //   await page.goto('https://google.com');
+  //   expect(await page.title()).toContain('Google');
+
+  // });
+  test('Running Test in Webkit', async ({ page: webkitPage }, testInfo) => {
+    console.log(`Running Test in Webkit: ${new Date().toLocaleTimeString()}`);
+    console.log(`Worker: ${testInfo.workerIndex}`);
+    //const browser:Browser= await webkit.launch({headless:false,channel:'webkit'});
+    //const page:Page= await browser.newPage();
+    await webkitPage.goto('https://google.com');
+    expect(await webkitPage.title()).toContain('Google');
 
   });
-  test('Running Test in Webkit',async()=>{
-    const browser:Browser= await webkit.launch({headless:false,channel:'webkit'});
-    const page:Page= await browser.newPage();
-    await page.goto('https://google.com');
-    expect(await page.title()).toContain('Google');
 
-  });
-
-  test('Learn BrowserContext',async()=>{
+  test('Learn BrowserContext',async({page}, testInfo)=>{
+    console.log(`Learn BrowserContext: ${new Date().toLocaleTimeString()}`);
+    console.log(`Worker: ${testInfo.workerIndex}`);
     const browser:Browser= await chromium.launch({headless:false,channel:'chrome'});
     await browser.newContext();
     const page1:Page= await browser.newPage();
@@ -87,8 +109,9 @@ test('navigate to techtutorialz',async({page})=>{
 
   });
 //handle popups
-test('Handle popup window', async ({ page }) => {
-    
+test('Handle popup window', async ({ page }, testInfo) => {
+    console.log(`Handle popup window: ${new Date().toLocaleTimeString()}`);
+    console.log(`Worker: ${testInfo.workerIndex}`);
 await page.goto('http://demo.guru99.com/test/delete_customer.php');
 const custID:Locator = await page.locator('[name="cusid"]');
 const custId:string = "523190";
@@ -113,7 +136,9 @@ await page.waitForTimeout(3000);
 
 });
   
-test('Demo test case', async ({ page }) => {
+test('Demo test case', async ({ page }, testInfo) => {
+  console.log(`Demo test case: ${new Date().toLocaleTimeString()}`);
+  console.log(`Worker: ${testInfo.workerIndex}`);
   await page.goto('https://google.com');
   const searchBox: Locator = await page.locator('[name="q"]');
   //await page.click('[name="q"]');
