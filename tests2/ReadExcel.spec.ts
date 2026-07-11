@@ -4,7 +4,7 @@ import { readFile, utils, read as _read } from 'xlsx';
 const xlsx = require('xlsx');
 //const path="C:\\Users\\Anand.Gummadilli\\Documents\\Anand_Details\\PlaywrightDemo\\PlaywrightDemo-1\\tests2\\Anvesh.xlsx";
 
-const path="C:\Users\anand\OneDrive\Documents\PlaywrightDemo\PlaywrightDemo\tests2\Anvesh.xlsx";
+const path="C:\\Users\\anand\\OneDrive\\Documents\\PlaywrightDemo\\PlaywrightDemo\\tests2\\Anvesh.xlsx";
 
 const workbook = xlsx.read(path);
 //const worksheet = workbook.Sheets['Sheet1'];
@@ -18,14 +18,7 @@ test('Read Excel', async()=>{
    console.log(xlsx.utils.encode_range({ r:1,c:1}));
 });
 
-
-/*
-test('Read environment variables', async() => {
-    console.log(process.env.OS); 
-    console.log(process.env.Path); 
-    console.log(process.env.windir);
-  });
-  */
+ 
 test('Read Excel with utils', async()=>{
     console.log(workbook.SheetNames);
     //const data = xlsx.utils.sheet_to_json(worksheet);

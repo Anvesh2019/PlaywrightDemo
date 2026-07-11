@@ -142,6 +142,5 @@ test('getbyLabel',async({page})=>{
     {
         await searchResults.first().click(); // Click the first element if it exists
     }
-    //.first(); //more than 1 elements exists, click 1st one
-    //await searchResults.click();
+   
 });
