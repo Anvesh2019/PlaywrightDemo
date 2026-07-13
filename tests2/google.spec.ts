@@ -4,11 +4,10 @@ import { clsStud } from './clsStud';
 import {common} from './common';
 import { defineConfig } from '@playwright/test';
 
-export default defineConfig({
-  reporter: 'html',
-    workers: 4,
-});
 
+test.describe.configure({
+    mode: 'parallel'
+});
 test('calling function',async ({ page }, testInfo)=>{
   console.log(`calling function: ${new Date().toLocaleTimeString()}`);
   console.log(`Worker: ${testInfo.workerIndex}`);
@@ -58,18 +57,30 @@ test('navigate to techtutorialz',async({page})=>{
    // browser.close();
   });
   
-  test('Running Test in Firefox', async ({ page }, testInfo) => {
-
+  test('Getting TestInfo ', async ({ page }, testInfo) => {
+    console.log('test name:', testInfo.title);
+    console.log('test status:', testInfo.status);
     console.log(`Time         : ${new Date().toLocaleTimeString()}`);
     console.log(`Worker Index : ${testInfo.workerIndex}`);
     console.log(`Project      : ${testInfo.project.name}`);
     console.log(`PID          : ${(globalThis as any).process?.pid ?? 'unknown'}`);
 
     await page.goto('https://google.com');
+    await expect(page).toHaveTitle(/Google/);
+     console.log('test duration:', testInfo.duration); // this will get 0 as test is not finised yet
+});
+test('Getting Test Duration', async ({ page }, testInfo) => {
+
+    const start = Date.now();
+
+    await page.goto('https://google.com');
 
     await expect(page).toHaveTitle(/Google/);
-});
 
+    const end = Date.now();
+
+    console.log(`Execution Time: ${end - start} ms`);
+});
 
   // test('Running Test in Firefox',async({page}, testInfo)=>{
   //   console.log(`Running Test in Firefox: ${new Date().toLocaleTimeString()}`);
