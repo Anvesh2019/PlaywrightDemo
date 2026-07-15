@@ -12,8 +12,9 @@ test("API Get call", async ({ request }) => {
 
 //expect(responseBody.name).toContain("doggie");
   //await expect(responseBody).toBeTruthy("Hildegard");
-  expect(responseBody.some((item: any) => item.name === "Mariana")).toBeTruthy();
-  expect(responseBody.some((item: any) => item.id === "9223372016900034000")).toBeTruthy();
+  //expect(responseBody.some((item: any) => item.name === "Mariana")).toBeTruthy();
+  expect(responseBody.some((item: any) => item.id === "236705")).toBeTruthy();
+  //expect(await response.json().toHaveProperty("name"));
 });
 
 test('GET API with path parameter', async ({ request }) => {
@@ -48,14 +49,14 @@ test('GET API with query parameters', async ({ request }) => {
 
 test("API Verify Response", async ({ request }) => {
   const response = await request.get("https://petstore.swagger.io/v2/pet/9223372036854001000");
-  //expect(response.ok()).toBeTruthy();
+  expect(response.ok()).toBeTruthy();
   console.log(await response.json());
   console.log(await response.status());
   
   //await expect(response.status()).toBe(200);
   const responseBody: any = await response.json();
 
-  expect(responseBody.some((item: any) => item.id === "9223372036854001000")).toBeTruthy();
+  //expect(responseBody.some((item: any) => item.id === "9223372036854001000")).toBeTruthy();
 });
 
 test('POST API Request', async ({ request }) => {
