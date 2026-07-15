@@ -30,4 +30,8 @@ test('Learn slice method',async()=>{
     }
     
     console.log(...numbers.slice(0, numbers.length - 2)); //take index 0 to 2
+
+    numbers.reverse();  //reverse all the numbers
+
+    console.log(numbers);
 });
