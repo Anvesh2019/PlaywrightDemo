@@ -3,7 +3,7 @@ export class clsStud
   
     age:number=25;
     sname:string="Maharshi";
-
+    private city:string="Hyderabad";
     constructor(age1:number,name1:string)
     {
        this.age=age1;
@@ -18,9 +18,7 @@ export class clsStud
     {
       return a+b;
     }
-    
-    
-    
+          
 }
 
 
