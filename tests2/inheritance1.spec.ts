@@ -9,6 +9,6 @@ test('Learn Inheritance', async ({ page }, testInfo) => {
     objStudChild.Displayname(); //calling child class method
     console.log(objStudChild.AddNumbers(10,20) ); //calling parent class method
     console.log("stud age is:" + objStudChild.age); //accessing parent class property   
-    console.log(objStudChild.city); //accessing parent class private property
+    console.log(objStudChild.city); //accessing parent class private property, should not work
 });
 
