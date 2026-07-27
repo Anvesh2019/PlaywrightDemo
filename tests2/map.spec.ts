@@ -43,3 +43,27 @@ test('Map from entries3', async () => {
         console.log(`${key} => ${value}`);
     }
 });
+
+test('Loop through Map', async () => {
+let fruits = new Map<string, number>();
+
+fruits.set("Apple", 100);
+fruits.set("Orange", 80);
+fruits.set("Banana", 60);
+//fruits.clear(); //clears all values
+for (let [key, value] of fruits) {
+    console.log(key, value);
+}
+});
+
+test('Learn about set', async () => {
+    const numbers = new Set<number>();
+    numbers.add(10);
+    numbers.add(20);
+    numbers.add(30);
+    numbers.add(20); // Duplicate, won't be added
+    console.log(numbers.size); // 3
+    console.log(numbers.has(20)); // true
+    numbers.delete(20);
+    console.log(numbers.has(20)); // false
+});

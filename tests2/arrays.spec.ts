@@ -35,3 +35,10 @@ test('Learn slice method',async()=>{
 
     console.log(numbers);
 });
+test('learn push method',async()=>{ 
+    let age: number[] = [25, 30, 35,45,30];
+    age.push(40);
+    console.log(age);
+    console.log("length is:" + age.length);
+    console.log(age.findIndex((value)=>value==30));
+});
