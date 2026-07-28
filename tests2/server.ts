@@ -34,6 +34,24 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
         properties: {},
       },
     },
+    {
+      name: "close_browser",
+      description: "Close the browser",
+      inputSchema: {
+        type: "object",
+        properties: {},
+      },
+      
+    },
+    {
+      name: "open_playwrighttutorial",
+      description: "Launch Chromium and open Playwright Tutorials",
+      inputSchema: {
+        type: "object",
+        properties: {},
+      },
+      
+    },
   ],
 }));
 
@@ -58,7 +76,42 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         ],
       };
     }
+    case "open_playwrighttutorial": {
+      const browser = await chromium.launch({
+        headless: false,
+      });
 
+      const page = await browser.newPage();
+      await page.goto("https://techtutorialz.com/category/playwright-tutorial/");
+      console.log("Playwright Tutorials opened.");
+
+      return {
+        content: [
+          {
+            type: "text",
+            text: "Playwright Tutorials opened successfully.",
+          },
+        ],
+      };
+    }
+case "close_browser": {
+      const browser = await chromium.launch({
+        headless: false,
+      });
+
+      const page = await browser.newPage();
+      await page.close();
+      console.log("Browser closed.");
+
+      return {
+        content: [
+          {
+            type: "text",
+            text: "Browser closed successfully.",
+          },
+        ],
+      };
+    }
     default:
       throw new Error(`Unknown tool: ${request.params.name}`);
   }
