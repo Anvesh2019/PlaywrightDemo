@@ -1,1 +1,0 @@
-{"version":3,"file":"clsStudAbsChild.d.ts","sourceRoot":"","sources":["clsStudAbsChild.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,eAAe,EAAE,MAAM,cAAc,CAAC;AAE/C,qBAAa,eAAgB,SAAQ,eAAe;IAEhD,GAAG,EAAE,MAAM,CAAC;IACZ,KAAK,EAAE,MAAM,CAAC;IAEd,YAAY,GAAG,EAAE,MAAM,EAAE,KAAK,EAAE,MAAM,EAIrC;IAED,WAAW,IAAI,IAAI,CAElB;IAED,cAAc,IAAI,MAAM,CAEvB;CACJ"}

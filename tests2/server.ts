@@ -47,7 +47,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
       const page = await browser.newPage();
       await page.goto("https://www.google.com");
-console.log("Google opened.");
+      console.log("Google opened.");
 
       return {
         content: [
