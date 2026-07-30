@@ -26,8 +26,9 @@ test('Findelement By classname',async({})=>{
     const browser:Browser=await chromium.launch({headless:false, channel:'chrome'});
     const page2:Page=await browser.newPage();
     await page2.goto('https://www.google.com');
-    const txtSrch:Locator=await page2.locator('textarea.gLFyf');
+    const txtSrch:Locator=await page2.locator('textarea.gLFyf'); //class name
     await txtSrch.fill("India");
+    await page2.waitForTimeout(3000);
     
 });
 
@@ -35,8 +36,9 @@ test('Findelement By text',async({})=>{
     const browser:Browser=await chromium.launch({headless:false, channel:'chrome'});
     const page2:Page=await browser.newPage();
     await page2.goto('https://www.amazon.in');
-    const giftcards:Locator=await page2.getByText("Amazon Pay").first(); 
-    await giftcards.click();
+    const amzPay:Locator=await page2.getByText("Amazon Pay").first(); 
+    await amzPay.click();
+    await page2.waitForTimeout(3000);
     
 });
 test('Findelement By css selector',async({})=>{
@@ -47,16 +49,14 @@ test('Findelement By css selector',async({})=>{
     await txtSrch.fill("Techturorielaz");
     
 });
-
+//data-testid needed to find the element.. as of now this test case wont work
 test('Findelement By Testid',async({})=>{
     const browser:Browser=await chromium.launch({headless:false, channel:'chrome'});
     const page2:Page=await browser.newPage();
     await page2.goto('https://www.google.com');
-    const prodLink:Locator= await page2.getByTestId('products');
-    await prodLink.click();
-
-    //console.log(await page2.getByRole('div').filter(hasText:'Google offered in:  ').isEnabled());
+    await page2.getByTestId('search-box').fill('Playwright');
     
+        
 });
 
 test('Learn GetbyRole',async()=>{
@@ -76,8 +76,7 @@ test('Learn GetbyRole',async()=>{
 test('Get by Role or title google search',async({page})=>{
    
     await page.goto("https://www.google.com", {
-    waitUntil: "domcontentloaded"
-});
+    waitUntil: "domcontentloaded"});
     //await page.waitForTimeout(2000);
     await page.waitForLoadState("networkidle"); //wait until pageload
     const textboxes = await page.getByRole("combobox").all();
@@ -87,8 +86,8 @@ test('Get by Role or title google search',async({page})=>{
     // await page.getByTitle("Search").fill("India");  //working fine
     // await page.getByTitle("Search").press("India"); //working fine
 
-    /*
-    ✅ getByRole('combobox', { name: 'Search' })
+/*
+✅ getByRole('combobox', { name: 'Search' })
 ✅ getByLabel('Search')
 ✅ getByTitle('Search')
 ✅ locator('textarea[name="q"]')
@@ -143,4 +142,17 @@ test('getbyLabel',async({page})=>{
         await searchResults.first().click(); // Click the first element if it exists
     }
    
+});
+
+test('Learn Getby role2',async({page})=>{
+    
+    await page.goto("https://techtutorialz.com");
+    const btnLogin:Locator=await  await page.getByRole('link', { name: 'Login' });
+    console.log("btnLogin count:", await btnLogin.count());
+    await btnLogin.click(); //click on Login
+   // await page.waitForTimeout(3000);
+   await page.goto("https://google.com");
+   await page.getByRole('button',{name:'Google Search'}).click();
+   await page.waitForTimeout(3000);
+
 });

@@ -1,5 +1,5 @@
 import { test, expect,Page, Browser, Locator } from '@playwright/test';
-import {clsWeather} from './clsWeather';
+import {clsWeather} from './clsWeather.js';
 
 test('Weather test1',async()=>{
 const objWeather=new clsWeather();
